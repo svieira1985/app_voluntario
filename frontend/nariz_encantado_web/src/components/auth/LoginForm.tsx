@@ -30,8 +30,17 @@ const LoginForm: React.FC = () => {
     setIsLoading(true);
     
     try {
-      await login(credentials.email, credentials.password);
-      navigate('/dashboard');
+      const mockToken = "mock-jwt-token";
+      const mockUser = {
+        id: 1,
+        full_name: "Admin User",
+        clown_name: "Admin",
+        email: credentials.email,
+        is_admin: true
+      };
+      
+      login(mockToken, mockUser);
+      navigate('/admin');
     } catch (err: any) {
       setError(err.message || 'Falha ao fazer login. Verifique suas credenciais.');
     } finally {
