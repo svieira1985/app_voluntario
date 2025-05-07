@@ -24,10 +24,12 @@ const LoginForm: React.FC = () => {
 
     try {
       const data = await authService.login(username, password);
+      localStorage.setItem('token', data.access_token);
       const userData = await authService.getCurrentUser();
       login(data.access_token, userData);
       navigate('/dashboard');
     } catch (err: any) {
+      console.error('Login error:', err);
       setError(err.response?.data?.detail || 'Erro ao fazer login. Verifique suas credenciais.');
     } finally {
       setIsLoading(false);

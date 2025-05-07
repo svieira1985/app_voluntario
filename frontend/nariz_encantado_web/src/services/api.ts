@@ -22,15 +22,17 @@ api.interceptors.request.use(
 
 export const authService = {
   login: async (username: string, password: string) => {
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
-    
-    const response = await api.post('/auth/token', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await api.post('/auth/token', 
+      new URLSearchParams({
+        'username': username,
+        'password': password
+      }),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
     return response.data;
   },
   
