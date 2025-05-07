@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 
+import HomePage from './pages/HomePage'
+
+function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/eventos" element={<div className="container mx-auto px-4 py-8">Página de Eventos em construção</div>} />
+        <Route path="/voluntario" element={<div className="container mx-auto px-4 py-8">Página de Voluntariado em construção</div>} />
+        <Route path="/contato" element={<div className="container mx-auto px-4 py-8">Página de Contato em construção</div>} />
+        <Route path="/login" element={<div className="container mx-auto px-4 py-8">Página de Login em construção</div>} />
+        <Route path="/register" element={<div className="container mx-auto px-4 py-8">Página de Cadastro em construção</div>} />
+        <Route path="*" element={<div className="container mx-auto px-4 py-8">Página não encontrada</div>} />
+      </Routes>
+      <Footer />
+    </div>
   )
 }
 

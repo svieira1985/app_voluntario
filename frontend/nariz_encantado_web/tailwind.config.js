@@ -10,6 +10,15 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			primary: {
+          DEFAULT: '#FFDE59', // Yellow primary color
+          foreground: '#000000', // Black text color
+          hover: '#FFD700', // Slightly darker yellow for hover states
+        },
+        secondary: {
+          DEFAULT: '#E53E3E', // Red for buttons
+          hover: '#C53030', // Darker red for hover states
+        },
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',
@@ -47,4 +56,3 @@ export default {
   },
   plugins: [import("tailwindcss-animate")],
 }
-
