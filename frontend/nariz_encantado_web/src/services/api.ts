@@ -30,7 +30,7 @@ export const login = (email: string, password: string) =>
 export const register = (userData: any) => 
   api.post('/api/auth/register', userData);
 export const forgotPassword = (email: string) => 
-  api.post('/api/auth/forgot-password', { email });
+  api.post('/api/auth/reset-password', { email });
 
 export const getUserProfile = () => api.get('/api/users/me');
 export const updateUserProfile = (userData: any) => 
