@@ -72,7 +72,7 @@ const AdminUserManagement: React.FC = () => {
       toast({
         title: "Sucesso!",
         description: "Usuário admin criado com sucesso!",
-        variant: "default",
+        type: "default",
       });
       
       setNewUser({
@@ -106,7 +106,7 @@ const AdminUserManagement: React.FC = () => {
       toast({
         title: "Sucesso!",
         description: `Status de admin ${!currentStatus ? 'ativado' : 'desativado'} com sucesso!`,
-        variant: "default",
+        type: "default",
       });
       
       fetchUsers();
@@ -115,7 +115,7 @@ const AdminUserManagement: React.FC = () => {
       toast({
         title: "Erro!",
         description: err.response?.data?.detail || 'Erro ao alterar status de admin.',
-        variant: "destructive",
+        type: "error",
       });
     }
   };
