@@ -7,7 +7,9 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import EventDetail from './pages/EventDetail';
+import EventRegistration from './pages/EventRegistration';
 import FinancialDashboard from './pages/FinancialDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import PasswordRecoveryForm from './components/auth/PasswordRecoveryForm';
@@ -56,6 +58,16 @@ const App: React.FC = () => {
               <Route 
                 path="/financial" 
                 element={<ProtectedRoute element={<FinancialDashboard />} adminOnly={true} />} 
+              />
+              <Route 
+                path="/admin" 
+                element={<ProtectedRoute element={<AdminDashboard />} adminOnly={true} />} 
+              />
+              
+              {/* Event registration route */}
+              <Route 
+                path="/event/register/:registrationLink" 
+                element={<EventRegistration />} 
               />
               
               {/* Fallback route */}

@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
 from sqlalchemy.orm import Session
 from typing import List, Optional
 import os
+import secrets
+import string
 from datetime import datetime
 
 from app.database.database import get_db
@@ -100,5 +102,85 @@ async def upload_event_image(
     event.image_path = file_path
     db.commit()
     db.refresh(event)
+    
+    return event
+
+@router.put("/{event_id}", response_model=Event)
+def update_event(
+    event_id: int,
+    event_data: EventCreate,
+    db: Session = Depends(get_db),
+    current_user: UserModel = Depends(get_admin_user)
+):
+    """Update an event. Admin only."""
+    event = db.query(EventModel).filter(EventModel.id == event_id).first()
+    if event is None:
+        raise HTTPException(status_code=404, detail="Event not found")
+    
+    event.name = event_data.name
+    event.date_time = event_data.date_time
+    event.location = event_data.location
+    event.total_spots = event_data.total_spots
+    event.available_spots = event_data.available_spots
+    event.description = event_data.description
+    
+    db.commit()
+    db.refresh(event)
+    
+    return event
+
+@router.delete("/{event_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_event(
+    event_id: int,
+    db: Session = Depends(get_db),
+    current_user: UserModel = Depends(get_admin_user)
+):
+    """Delete an event. Admin only."""
+    event = db.query(EventModel).filter(EventModel.id == event_id).first()
+    if event is None:
+        raise HTTPException(status_code=404, detail="Event not found")
+    
+    registrations = db.query(EventRegistrationModel).filter(
+        EventRegistrationModel.event_id == event_id
+    ).count()
+    
+    if registrations > 0:
+        pass
+    
+    db.delete(event)
+    db.commit()
+    
+    return None
+
+@router.post("/{event_id}/generate-link", response_model=Event)
+def generate_registration_link(
+    event_id: int,
+    db: Session = Depends(get_db),
+    current_user: UserModel = Depends(get_admin_user)
+):
+    """Generate a unique registration link for an event. Admin only."""
+    event = db.query(EventModel).filter(EventModel.id == event_id).first()
+    if event is None:
+        raise HTTPException(status_code=404, detail="Event not found")
+    
+    if not event.registration_link:
+        alphabet = string.ascii_letters + string.digits
+        registration_link = ''.join(secrets.choice(alphabet) for _ in range(12))
+        
+        event.registration_link = registration_link
+        db.commit()
+        db.refresh(event)
+    
+    return event
+
+@router.get("/register/{registration_link}", response_model=Event)
+def get_event_by_registration_link(
+    registration_link: str,
+    db: Session = Depends(get_db)
+):
+    """Get an event by its registration link."""
+    event = db.query(EventModel).filter(EventModel.registration_link == registration_link).first()
+    if event is None:
+        raise HTTPException(status_code=404, detail="Event not found")
     
     return event

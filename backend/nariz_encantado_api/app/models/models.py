@@ -43,6 +43,7 @@ class Event(Base):
     available_spots = Column(Integer)
     image_path = Column(String, nullable=True)
     description = Column(Text, nullable=True)
+    registration_link = Column(String, unique=True, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     registrations = relationship("EventRegistration", back_populates="event")

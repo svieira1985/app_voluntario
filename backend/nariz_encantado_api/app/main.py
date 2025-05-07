@@ -6,7 +6,7 @@ import os
 
 from app.database.database import engine
 from app.models import models
-from app.routers import auth, users, events, financial
+from app.routers import auth, users, events, financial, admin
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -29,6 +29,7 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(events.router)
 app.include_router(financial.router)
+app.include_router(admin.router)
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 

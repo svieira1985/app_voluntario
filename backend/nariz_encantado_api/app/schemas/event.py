@@ -16,6 +16,7 @@ class EventCreate(EventBase):
 class Event(EventBase):
     id: int
     image_path: Optional[str] = None
+    registration_link: Optional[str] = None
     created_at: datetime
     
     class Config:

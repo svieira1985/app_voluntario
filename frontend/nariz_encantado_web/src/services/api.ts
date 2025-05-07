@@ -50,6 +50,21 @@ export const authService = {
     const response = await api.get('/users/me');
     return response.data;
   },
+  
+  getAllUsers: async () => {
+    const response = await api.get('/admin/users');
+    return response.data;
+  },
+  
+  createAdmin: async (userData: any) => {
+    const response = await api.post('/admin/users', userData);
+    return response.data;
+  },
+  
+  updateUserRole: async (userId: number, isAdmin: boolean) => {
+    const response = await api.patch(`/admin/users/${userId}/role`, { is_admin: isAdmin });
+    return response.data;
+  },
 };
 
 export const eventService = {
@@ -63,6 +78,11 @@ export const eventService = {
     return response.data;
   },
   
+  getEventByRegistrationLink: async (registrationLink: string) => {
+    const response = await api.get(`/events/register/${registrationLink}`);
+    return response.data;
+  },
+  
   registerForEvent: async (eventId: number) => {
     const response = await api.post(`/events/${eventId}/register`);
     return response.data;
@@ -70,6 +90,21 @@ export const eventService = {
   
   createEvent: async (eventData: any) => {
     const response = await api.post('/events', eventData);
+    return response.data;
+  },
+  
+  updateEvent: async (id: number, eventData: any) => {
+    const response = await api.put(`/events/${id}`, eventData);
+    return response.data;
+  },
+  
+  deleteEvent: async (id: number) => {
+    const response = await api.delete(`/events/${id}`);
+    return response.data;
+  },
+  
+  generateRegistrationLink: async (eventId: number) => {
+    const response = await api.post(`/events/${eventId}/generate-link`);
     return response.data;
   },
   

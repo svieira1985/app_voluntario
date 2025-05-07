@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../ui/button';
-import { Heart, Menu, X } from 'lucide-react';
+import { Heart, Menu, X, Shield, BarChart } from 'lucide-react';
 
 const Header: React.FC = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, isAdmin } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const toggleMenu = () => {
@@ -58,6 +58,24 @@ const Header: React.FC = () => {
                   Minha Área
                 </Button>
               </Link>
+              
+              {isAdmin && (
+                <>
+                  <Link to="/admin">
+                    <Button variant="ghost" className="text-gray-700 hover:text-red-600">
+                      <Shield className="h-4 w-4 mr-1" />
+                      Admin
+                    </Button>
+                  </Link>
+                  <Link to="/financial">
+                    <Button variant="ghost" className="text-gray-700 hover:text-red-600">
+                      <BarChart className="h-4 w-4 mr-1" />
+                      Financeiro
+                    </Button>
+                  </Link>
+                </>
+              )}
+              
               <Button 
                 variant="ghost" 
                 className="text-gray-700 hover:text-red-600"
@@ -123,6 +141,24 @@ const Header: React.FC = () => {
                     Minha Área
                   </Button>
                 </Link>
+                
+                {isAdmin && (
+                  <>
+                    <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="ghost" className="w-full text-gray-700 hover:text-red-600">
+                        <Shield className="h-4 w-4 mr-1" />
+                        Admin
+                      </Button>
+                    </Link>
+                    <Link to="/financial" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="ghost" className="w-full text-gray-700 hover:text-red-600">
+                        <BarChart className="h-4 w-4 mr-1" />
+                        Financeiro
+                      </Button>
+                    </Link>
+                  </>
+                )}
+                
                 <Button 
                   variant="ghost" 
                   className="w-full text-gray-700 hover:text-red-600"
