@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
-import { AlertCircle, Calendar, MapPin, Users, Clock } from 'lucide-react';
+import { AlertCircle, Calendar, MapPin, Users } from 'lucide-react';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -12,7 +12,7 @@ import { eventService } from '../services/api';
 const EventRegistration: React.FC = () => {
   const { registrationLink } = useParams<{ registrationLink: string }>();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   
   const [event, setEvent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
