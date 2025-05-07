@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           {/* Logo and About */}
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center mb-4">
-              <img src="/images/logo.png" alt="Nariz Encantado" className="h-10 w-auto mr-2" />
+              <img src="/images/image7.png" alt="Nariz Encantado" className="h-12 w-auto mr-2" />
               <span className="text-2xl font-bold">Nariz Encantado</span>
             </div>
             <p className="text-center md:text-left">

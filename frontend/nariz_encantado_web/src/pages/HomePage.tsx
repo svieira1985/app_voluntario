@@ -119,7 +119,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <img 
-                src="/images/logo.png" 
+                src="/images/image7.png" 
                 alt="Nariz Encantado" 
                 className="max-w-full h-auto max-h-80"
               />

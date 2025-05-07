@@ -19,11 +19,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-yellow-50 shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <img src="/images/logo.png" alt="Nariz Encantado" className="h-12 w-auto mr-2" />
+            <img src="/images/image7.png" alt="Nariz Encantado" className="h-16 w-auto mr-2" />
             <span className="text-2xl font-bold text-yellow-500">Nariz Encantado</span>
           </Link>
         </div>

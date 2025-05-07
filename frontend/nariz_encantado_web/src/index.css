@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #f59e0b;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #1f2937;
+  --accent: #fef3c7;
+  --accent-foreground: #92400e;
+  --background: #ffffff;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #f59e0b;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.hero-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/image1.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: var(--primary);
+}
